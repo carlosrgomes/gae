@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean  class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" lazy-init="true" />
+	
+	<bean id="beneficiarioDao" class="br.com.barbero.gae.dao.beneficiario.impl.BeneficiarioDaoImpl" lazy-init="true"/>
+	
+	<bean id="beneficiarioService" class="br.com.barbero.gae.service.BeneficiarioServiceImpl" lazy-init="true">
+		<property name="beneficiarioDaoImpl" ref="beneficiarioDao"></property>
+	</bean>
+	
+	<!-- Declarar todos os controllers aqui -->
+	<bean class="br.com.barbero.gae.controller.BeneficiarioController" lazy-init="true" >
+		<property name="beneficiarioService" ref="beneficiarioService"/>
+	</bean>
+
+</beans>
